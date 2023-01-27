@@ -1,6 +1,6 @@
 {
   "name": "postcss-viewport-unit-fallback",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "PostCSS plugin to fallback viewport unit(dvh/lvh/svh) for old browsers.",
   "keywords": [
     "postcss",
