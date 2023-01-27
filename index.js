@@ -1,30 +1,19 @@
+
 /**
  * @type {import('postcss').PluginCreator}
  */
-module.exports = (opts = {}) => {
-  // Work with options here
-
+module.exports = () => {
+  const viewportUnitRegex = /(\d)[l|s|d]([vh|vw])/g;
   return {
     postcssPlugin: 'postcss-viewport-unit-fallback',
-    /*
-    Root (root, postcss) {
-      // Transform CSS AST here
-    }
-    */
-
-    /*
-    Declaration (decl, postcss) {
-      // The faster way to find Declaration node
-    }
-    */
-
-    /*
-    Declaration: {
-      color: (decl, postcss) {
-        // The fastest way find Declaration node if you know property name
-      }
-    }
-    */
+    Once: (root) => {
+      root.walkDecls((decl) => {
+        if (typeof decl.value === "string" && decl.value.match(viewportUnitRegex)) {
+          const value = decl.value.replace(viewportUnitRegex, '$1$2');
+          decl.before(` ${decl.prop}: ${value}`);
+        }
+      });
+    },
   }
 }
 
