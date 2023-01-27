@@ -1,18 +1,19 @@
 # postcss-viewport-unit-fallback
 
-[PostCSS] plugin to fallback viewport unit(dvh/lvh/svh) for old browsers..
+[PostCSS] plugin to fallback viewport unit(dvh/lvh/svh) for old browsers.
 
-[PostCSS]: https://github.com/postcss/postcss
+[postcss]: https://github.com/postcss/postcss
 
 ```css
 .foo {
-  /* Input example */
+  height: 100dvh;
 }
 ```
 
 ```css
 .foo {
-  /* Output example */
+  height: 100vh; /* Automatically add this line, and old browser doesn't support dvh use this */
+  height: 100dvh; /* New browser supports dvh use this */
 }
 ```
 
